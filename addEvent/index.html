@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>作成削除</title>
+</head>
+<body class="page2">
+  
+  <div class="top"><button>1ページ</button><button>2ページ</button></div>
+
+  <section class="display-box">
+    <p>追加削除</p>
+    <div class="addremove">
+      <ul class="square">
+      </ul>
+    </div>
+    <p>線を移動</p>
+    <div class="line-move">
+      <span class="row" draggable="true" ></span>
+      <!-- <span class="colmun" draggable="true"></span> -->
+    </div>
+    <p>図形移動</p>
+    <div class="block-move">
+      <ul>
+        <li draggable="true">L1</li>
+        <li draggable="true">L2</li>
+        <li draggable="true">L3</li>
+      </ul>
+      <ul>
+        <li draggable="true">R1</li>
+        <li draggable="true">R2</li>
+        <li draggable="true">R3</li>
+      </ul>
+    </div>
+    <p>マウス位置</p>
+    <div class="mouse-move">
+      <p></p>
+    </div>
+
+  </section>
+  <section class="display-box2">
+
+    <p>スクロール</p>
+    <div class="scroll">
+      <ul>
+        <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li>
+        <li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li>
+
+        <!-- <l3></l3><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li>30</li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li>40</li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li>50</li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li>60</li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li>70</li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li>80</li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li>90</li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li>100</li>
+      </ul> -->
+
+    </div>
+    
+    <p>マウスお絵描き</p>
+    <div class="draw" draggable="true">
+
+    </div>
+    <!-- <p>マウスお絵描き</p>
+    <div class="draw">
+
+    </div> -->
+  </section>
+  <section class="border"></section>
+  <section class="nav-box">
+    <nav class="add">
+      <button class="add-before">最初に追加</button>
+      <button class="add-after" >前に追加</button>
+      <button class="add-after" >後に追加</button>
+      <button class="add-after" >最後に追加</button>
+    </nav>
+    <nav class="remove">
+      <button class="remove-before">前を削除</button>
+      <button class="remove-select">選択を削除</button>
+      <button class="remove-after" >後を削除</button>
+    </nav>
+  </section>
+  <script src="main.js"></script>
+</body>
+</html>
