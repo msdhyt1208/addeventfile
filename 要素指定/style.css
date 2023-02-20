@@ -1,0 +1,72 @@
+
+*{
+  padding: 0;
+  margin: 10px auto;
+
+}
+body{
+  margin-left:0;
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(200,200,200);
+  width: 1000px;
+  height: 500px;
+
+}
+main{
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(255,255,200);
+}
+ul{
+  text-align: center;
+  padding: 0 10px;
+  background-color: rgb(255,200,255);
+}
+li{
+  list-style: none;
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(200,255,255);
+}
+main div{
+  padding: 10px;
+  background-color: rgb(255,255,200);
+}
+p{
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(255,200,255);
+}
+span{
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: block;
+  background-color: rgb(200,255,255);
+}
+.footer{
+  margin-top: 100px;
+  background-color: #333;
+}
+.wappar-row{
+  display: flex;
+    flex-direction: row;
+  background-color: rgb(200,200,200);
+  margin: 1px auto;
+}
+.wappar-row>div{
+  text-align: center;
+  font-size: 2em;
+  flex: 1 1 100%;
+}
+footer{
+  width: 100%;
+  display: flex;
+}
+button{
+  margin: 0 10px;
+  flex-shrink: 1;
+  width: 100%;
+  font-size: 2em;
+}
