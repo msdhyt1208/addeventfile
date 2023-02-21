@@ -4,7 +4,7 @@ const peel = {
   action :function(){
     this.space.addEventListener("mousemove",this.mouseMove());
   },
-  mouseMove:function(bThis){
+  mouseMove:function(){
     return function(event){
       // console.log(`X:${this.clientWidth-event.offsetX} Y:${event.offsetY}`),
       strY = event.offsetY; 
@@ -12,7 +12,7 @@ const peel = {
       rad  = Math.acos((strY*strY-strX*strX)/(strX*strX+strY*strY));
       X = strX/Math.sin(rad);
       Y = strY/Math.sin(rad);
-      // if(Y >= this.clientWidth|| X>= this.clientHeight)return;
+      if(Y >= this.clientWidth|| X>= this.clientHeight)return;
       kakudo = 180-rad/Math.PI*180;
       document.documentElement.style.setProperty('--top', `${X}px`);
       document.documentElement.style.setProperty('--left', `${Y}px`);
