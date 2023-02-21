@@ -268,8 +268,8 @@ section>.line-move,section>.block-move{
 }
 .peel li{
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 25px;
+  height: 25px;
   background-color: rgb(133, 134, 201);
 }
 .peel li:nth-child(1){

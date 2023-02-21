@@ -211,10 +211,24 @@ function mausedrow(){
 }
 // mausedrow();
 const peel = {
-  space : document.querySelector(".peel>div"),
   root : document.documentElement.style,
   action :function(){
-    this.space.addEventListener("mousemove",this.mouseMove2());
+    const space = document.querySelector(".peel>div");
+    const btn = document.querySelectorAll(".peel li");
+    for(i=0;i<btn.length;i++){
+      btn[i].addEventListener("click",click(i,space));
+    }
+    space.addEventListener("mousemove",this.mouseMove2());
+    function click(i,space){
+      return function(){
+        switch(i){
+          case 0:space.className= `ur`; break;
+          case 1:space.className=`br`; break;
+          case 2:space.className=`bl`; break;
+          default:space.className=`ul`; break;
+        }
+      }
+    }
   },
   mouseMove:function(){
     return function(event){
