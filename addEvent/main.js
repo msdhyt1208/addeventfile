@@ -209,57 +209,60 @@ function mausedrow(){
     event.preventDefault();
   })
 }
-// mausedrow();
+mausedrow();
+
 const peel = {
   root : document.documentElement.style,
   action :function(){
     const space = document.querySelector(".peel>div");
     const btn = document.querySelectorAll(".peel li");
     for(i=0;i<btn.length;i++){
-      btn[i].addEventListener("click",click(i,space));
+      btn[i].addEventListener("click",this.click(i,space));   
     }
-    space.addEventListener("mousemove",this.mouseMove2());
-    function click(i,space){
-      return function(){
-        switch(i){
-          case 0:space.className= `ur`; break;
-          case 1:space.className=`br`; break;
-          case 2:space.className=`bl`; break;
-          default:space.className=`ul`; break;
-        }
+    space.addEventListener("mousemove",this.mouseMove());
+
+  },
+  dragover:function(){ 
+    return function(){
+       console.log("over"); 
+       event.preventDefault();
+    }
+  },
+  click:  function(i,space){
+    return function(){
+      switch(i){
+        case 0:space.className= `tr`; break;
+        case 1:space.className=`br`; break;
+        case 2:space.className=`bl`; break;
+        default:space.className=`tl`; break;
       }
     }
   },
   mouseMove:function(){
     return function(event){
       // console.log(`X:${this.clientWidth-event.offsetX} Y:${event.offsetY}`),
+      event.preventDefault();
       strY = event.offsetY; 
-      strX = this.clientWidth - event.offsetX;
-      rad  = Math.acos((strY*strY-strX*strX)/(strX*strX+strY*strY));
+      strX = event.offsetX;
+      if(this.className=="tr"||this.className=="br")
+        strX = this.clientWidth - event.offsetX;  
+      if(this.className=="bl"||this.className=="br")
+        strY = this.clientHeight - event.offsetY;
+ 
+      rad  = Math.acos((-strY*strY+strX*strX)/(strX*strX+strY*strY));
+      if(this.className=="tr"||this.className=="bl")
+        rad  = Math.acos((strY*strY-strX*strX)/(strX*strX+strY*strY));
+      
       X = strX/Math.sin(rad);
       Y = strY/Math.sin(rad);
       if(Y >= this.clientWidth|| X>= this.clientHeight)return;
-      kakudo = 180-rad/Math.PI*180;
+      kakudo = rad/Math.PI*180;
       document.documentElement.style.setProperty('--top', `${X}px`);
       document.documentElement.style.setProperty('--left', `${Y}px`);
       document.documentElement.style.setProperty('--rad', `${kakudo}deg`);
     }
   },
-  mouseMove2:function(){
-    return function(event){
-      // console.log(`X:${this.clientWidth-event.offsetX} Y:${event.offsetY}`),
-      strY = event.offsetY; 
-      strX = event.offsetX;
-      rad  = Math.acos((strY*strY-strX*strX)/(strX*strX+strY*strY));
-      X = strX/Math.sin(rad);
-      Y = strY/Math.sin(rad);
-      if(Y >= this.clientWidth|| X>= this.clientHeight)return;
-      kakudo = rad/Math.PI*180-180;
-      document.documentElement.style.setProperty('--top', `${X}px`);
-      document.documentElement.style.setProperty('--left', `${Y}px`);
-      document.documentElement.style.setProperty('--rad', `${kakudo}deg`);
-    }
-  }
+
 }
 peel.action();
 

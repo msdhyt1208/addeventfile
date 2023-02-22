@@ -1,7 +1,7 @@
 :root{
   --top : 50px;
   --left: 50px;
-  --rad :120deg;
+  --rad :90deg;
 }
 *{
   box-sizing: border-box;
@@ -242,35 +242,93 @@ section>.line-move,section>.block-move{
   width: 100px;
   background-color:rgb(200, 255, 255);
 }
-.peel>div::before{
+.peel>div::before,.peel>div::after{
   content: "";
   position: absolute;
-  z-index: 1;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-  border-bottom: solid var(--top) rgba(100, 200, 200,0);
-  border-left: solid var(--left) rgb(255, 245, 165) ;
 }
 
-.peel>div::after{
-  content: "";
-  position: absolute;
-  z-index: 5;
+.peel>.tr::before,.peel>.tr::after{
+  top: 0;
+  right: 0;
+  border-top: solid var(--top) rgba(100, 200, 200,0);
+  border-left: solid var(--left) rgba(100, 200, 200,0);
+}
+.peel>.tr::before{
+border-top: solid var(--top) rgb(255, 245, 165) ;
+}
+.peel>.tr::after{
+border-left: solid var(--left) rgb(144, 225, 225);
+transform:rotate(var(--rad)) rotateY(180deg);
+}
+.peel>.bl::before,.peel>.bl::after{
+  bottom: 0;
+  left: 0;
+  border-bottom: solid var(--top) rgba(100, 200, 200, 0);
+  border-right: solid var(--left) rgba(100, 200, 200,0);
+}
+.peel>.bl::before{
+border-bottom: solid var(--top) rgb(255, 245, 165) ;
+}
+.peel>.bl::after{
+border-right: solid var(--left) rgb(144, 225, 225);
+transform:rotate(var(--rad)) rotateY(180deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.peel>.tl::before,.peel>.tl::after{
     top: 0;
     left: 0;
-    width: 0;
-    height: 0;
-  border-bottom: solid var(--top)rgb(144, 225, 225);
-  border-left: solid var(--left) rgba(74, 116, 116,0);
-  transform: rotateX(180deg) rotate(var(--rad));
+    border-bottom: solid var(--top) rgba(100, 200, 200,0);
+    border-left: solid var(--left) rgba(100, 200, 200,0);
 }
+.peel>.tl::before{
+  border-left: solid var(--left) rgb(255, 245, 165) ;
+}
+.peel>.tl::after{
+  border-bottom: solid var(--top) rgb(144, 225, 225);
+  transform:rotate(var(--rad)) rotateX(180deg);
+}
+.peel>.br::before,.peel>.br::after{
+  bottom: 0;
+  right: 0;
+  border-top: solid var(--top) rgba(100, 200, 200,0);
+  border-right: solid var(--left) rgba(100, 200, 200,0);
+}
+.peel>.br::before{
+border-right: solid var(--left) rgb(255, 245, 165) ;
+}
+.peel>.br::after{
+border-top: solid var(--top) rgb(144, 225, 225);
+transform:rotate(var(--rad)) rotateX(180deg);
+}
+
+
+
+
+
+
+
+
+
 .peel li{
   position: absolute;
   width: 25px;
   height: 25px;
-  background-color: rgb(133, 134, 201);
+  background: none;
+  background-color: rgba(0, 0, 0, 0.087);
 }
 .peel li:nth-child(1){
   top: 0;
