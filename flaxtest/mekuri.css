@@ -1,8 +1,24 @@
 :root{
   --size : 500px;
 }
+::-webkit-scrollbar{
+  display: none
+}
 
+body{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+}
+.back{
+  flex: 0 0 500px;
+  position: relative;
 
+  height: 500px;
+  background-color: red;
+} 
 .sqare{
   position: absolute;
   top: 0;
@@ -19,12 +35,24 @@
   border-top: solid 0 red;
 }
 
-.back{
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  width: 500px;
+section{
+  overflow: scroll;
+  text-align: center;
+  margin: 0 10px ;
   height: 500px;
-  background-color: red;
-} 
+  flex: 0 1 500px;
+  background-color: rgb(239, 239, 239)
+}
+ol{text-align: center;
+}
+li{
+  list-style-position: inside;
+  text-align: center;
+  margin: auto;
+  height: 50px;
+  width: 200px;
+  padding: 5px;
+  margin: 10px;
+  color: azure;
+  font-size: 2em;
+}
