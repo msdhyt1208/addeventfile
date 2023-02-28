@@ -8,12 +8,10 @@ function turncard(){
   function rand(){
     return Math.floor(Math.random()*255);
   }
-  
   motion={
     click:function(){
       return function(){
         const text = document.querySelector(".text");
-      
         color={
           nambar:{
             red:rand(),
@@ -24,15 +22,13 @@ function turncard(){
         color.text = `rgb(${color.nambar.red}, ${color.nambar.green}, ${color.nambar.blue})`;
         color.text2= `rgb(${color.nambar.red+30}, ${color.nambar.green+30}, ${color.nambar.blue+30})`;
         records.push({...color});
-      
         const crLi = document.createElement("li");
           crLi.draggable = true;
           crLi.textContent = color.text;
           crLi.style.backgroundColor = color.text;
           crLi.addEventListener("dragstart",motion.dragstart(records.length));
           ol.appendChild(crLi);
-      
-        timer = setInterval(open(false,(back.scrollWidth/150),0),0);
+          timer = setInterval(open(false,(back.scrollWidth/150),0),0);
       }
     },
     drop:function(){
@@ -61,7 +57,6 @@ function turncard(){
       const sqareSt = back.firstElementChild.style;
       const cornerSt = corner.style;
       const text = document.querySelector(".back .text");
-  
       cornerSt.borderTop  = `solid ${color.text} ${width}px`;
       cornerSt.borderLeft = `solid ${color.text2} ${width}px`;
       if(width == 0 && !half){
@@ -85,13 +80,11 @@ function turncard(){
       if(!half){
         width = width+X; 
       }
-  
       else{
         sqareSt.top = `${500-width}px`;
         sqareSt.right = `${500-width}px`;
         width = width-X; 
       }
-  
     }
   }
   back.firstElementChild.addEventListener("click",    motion.click())
@@ -140,15 +133,12 @@ while(i<3){
     crColorLi.No = history.length;
     crColorLi.draggable =true;
     colorChert.appendChild(crColorLi);
-    
   }
   i++;
 }
 colorChert.addEventListener("click",function(event){
   addEvent(event);
 })
-
-
 colorChert.addEventListener("touchmove",function(event){
   event.preventDefault();
   addEvent(event.touches[0])
