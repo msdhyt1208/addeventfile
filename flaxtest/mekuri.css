@@ -101,3 +101,7 @@ li{
   margin: 0;
   padding: 0;
 }
+.colorChartSelect{
+  visibility: hidden;
+  transition: visibility linear 0.1s
+}

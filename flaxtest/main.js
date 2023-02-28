@@ -32,12 +32,14 @@ function turncard(){
           crLi.addEventListener("dragstart",motion.dragstart(records.length));
           ol.appendChild(crLi);
       
-        timer = setInterval(open(false,(back.scrollWidth/150),0),1);
+        timer = setInterval(open(false,(back.scrollWidth/150),0),0);
       }
     },
     drop:function(){
       return function(event){
         this.style.backgroundColor = records[target].text;
+        console.dir(event.target)
+        this.textContent = records[target].text;
         event.preventDefault();
       }
     },
@@ -47,7 +49,8 @@ function turncard(){
       }
     },
     dragstart:function (length){
-      return function(){
+      return function(event){
+        // event.preventDefault();
         target = length-1;
       }
     }
@@ -109,8 +112,9 @@ let i=0;
 const colordiv = document.querySelector(".sqare .text");
 const sqareColor = document.querySelector(".sqare");
 const colorChert = document.querySelector(".colorChert>ul");
+
 while(i<3){
-  for(let j=0;j<255;j++){
+  for(let j=0;j<256;j++){
     crColorLi = document.createElement("li");
     switch(i){
       case 0:
@@ -133,7 +137,7 @@ while(i<3){
     crColorLi.style.backgroundColor = ` rgb(${red}, ${green}, ${blue})`;
     const name = [red,green,blue];
     history.push([...name]);
-    crColorLi.class = history.length;
+    crColorLi.No = history.length;
     crColorLi.draggable =true;
     colorChert.appendChild(crColorLi);
     
@@ -141,35 +145,27 @@ while(i<3){
   i++;
 }
 colorChert.addEventListener("click",function(event){
-  const colorSelect = document.elementFromPoint(event.clientX,event.clientY)
-  colors = history [colorSelect.class];
-  sqareColor.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
-  console.dir(history [colorSelect.class])
-  colordiv.textContent = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+  addEvent(event);
 })
 
 
 colorChert.addEventListener("touchmove",function(event){
   event.preventDefault();
-  colorsSelect = document.elementFromPoint(event.touches[0].clientX,event.touches[0].clientY)
-  console.dir(event.touches[0])
-  colors = history [colorsSelect.class];
-  sqareColor.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
-  console.dir(history [colorsSelect.class])
-  colordiv.textContent = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
-})
-colorChert.addEventListener("dragstart",function(event){
-  startpozison = [event.clientX,event.clientY];
-  colorSelect = document.elementFromPoint(event.clientX,event.clientY);
+  addEvent(event.touches[0])
 })
 
+
 colorChert.addEventListener("dragover",function(event){
-  console.dir(this)
   event.preventDefault();
-  colorSelect = document.elementFromPoint(event.clientX,event.clientY);
-  console.dir(event)
-  colors = history [colorSelect.class];
-  sqareColor.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
-  console.dir(history [colorSelect.class])
-  colordiv.textContent = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+  addEvent(event);
+
 })
+function addEvent(event){
+  const colorSelect = document.elementFromPoint(event.clientX,event.clientY);
+  const colors= history [colorSelect.No];
+  colorText =`rgb(${colors[0]},${colors[1]},${colors[2]})`;
+  
+  sqareColor.style.backgroundColor = colorText;
+  colordiv.textContent = colorText;
+
+}
