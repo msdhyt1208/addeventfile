@@ -8,12 +8,10 @@ function turncard(){
   function rand(){
     return Math.floor(Math.random()*255);
   }
-  
   motion={
     click:function(){
       return function(){
         const text = document.querySelector(".text");
-      
         color={
           nambar:{
             red:rand(),
@@ -24,15 +22,13 @@ function turncard(){
         color.text = `rgb(${color.nambar.red}, ${color.nambar.green}, ${color.nambar.blue})`;
         color.text2= `rgb(${color.nambar.red+30}, ${color.nambar.green+30}, ${color.nambar.blue+30})`;
         records.push({...color});
-      
         const crLi = document.createElement("li");
           crLi.draggable = true;
           crLi.textContent = color.text;
           crLi.style.backgroundColor = color.text;
           crLi.addEventListener("dragstart",motion.dragstart(records.length));
           ol.appendChild(crLi);
-      
-        timer = setInterval(open(false,(back.scrollWidth/150),0),1);
+          timer = setInterval(open(false,(back.scrollWidth/150),0),1);
       }
     },
     drop:function(){
@@ -58,7 +54,6 @@ function turncard(){
       const sqareSt = back.firstElementChild.style;
       const cornerSt = corner.style;
       const text = document.querySelector(".back .text");
-  
       cornerSt.borderTop  = `solid ${color.text} ${width}px`;
       cornerSt.borderLeft = `solid ${color.text2} ${width}px`;
       if(width == 0 && !half){
@@ -82,13 +77,11 @@ function turncard(){
       if(!half){
         width = width+X; 
       }
-  
       else{
         sqareSt.top = `${500-width}px`;
         sqareSt.right = `${500-width}px`;
         width = width-X; 
       }
-  
     }
   }
   back.firstElementChild.addEventListener("click",    motion.click())
@@ -136,7 +129,6 @@ while(i<3){
     crColorLi.class = history.length;
     crColorLi.draggable =true;
     colorChert.appendChild(crColorLi);
-    
   }
   i++;
 }
@@ -147,8 +139,6 @@ colorChert.addEventListener("click",function(event){
   console.dir(history [colorSelect.class])
   colordiv.textContent = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
 })
-
-
 colorChert.addEventListener("touchmove",function(event){
   event.preventDefault();
   colorsSelect = document.elementFromPoint(event.touches[0].clientX,event.touches[0].clientY)
