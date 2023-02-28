@@ -105,3 +105,21 @@ li{
   visibility: hidden;
   transition: visibility linear 0.1s
 }
+.ditail{
+  margin-top: 10px;
+  width: 500px;
+  height: 250px;
+  background-color: #999;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ditail div{
+  width: 90%;
+  height: 90%;
+  background:linear-gradient(to top,rgb(0,0,0),rgba(255,255,255,0)),
+  linear-gradient(270deg ,rgb(255,0,0),rgb(255, 255, 255) 50%);
+             
+             
+              
+}

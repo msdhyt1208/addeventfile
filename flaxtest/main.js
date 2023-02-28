@@ -109,33 +109,24 @@ const colorChert = document.querySelector(".colorChert>ul");
 while(i<3){
   for(let j=0;j<256;j++){
     crColorLi = document.createElement("li");
+    let colorText= [];
     switch(i){
-      case 0:
-        red = 255-j;
-        green = j;
-        blue = 0;
+      case 0:   colorText = [`rgb(${255-j},   ${j},     ${0})`];
           break;
-      case 1:
-        green = 255-j;
-        blue = j;
-        red = 0;
+      case 1:   colorText = [`rgb(${0},       ${255-j}, ${j})`];
           break;
-      default:
-        blue = 255-j;
-        red = j;
-        green = 0;
-        break;
-
+      default:  colorText = [`rgb(${j},       ${0},     ${255-j})`];
     }
-    crColorLi.style.backgroundColor = ` rgb(${red}, ${green}, ${blue})`;
-    const name = [red,green,blue];
-    history.push([...name]);
+    crColorLi.style.backgroundColor = colorText;
+    history.push(...colorText);
     crColorLi.No = history.length;
     crColorLi.draggable =true;
     colorChert.appendChild(crColorLi);
   }
+  
   i++;
 }
+console.dir(history)
 colorChert.addEventListener("click",function(event){
   addEvent(event);
 })
@@ -148,12 +139,10 @@ colorChert.addEventListener("touchmove",function(event){
 colorChert.addEventListener("dragover",function(event){
   event.preventDefault();
   addEvent(event);
-
 })
 function addEvent(event){
   const colorSelect = document.elementFromPoint(event.clientX,event.clientY);
-  const colors= history [colorSelect.No];
-  colorText =`rgb(${colors[0]},${colors[1]},${colors[2]})`;
+  colorText = history[colorSelect.No];
   
   sqareColor.style.backgroundColor = colorText;
   colordiv.textContent = colorText;
