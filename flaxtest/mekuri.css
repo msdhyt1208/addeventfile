@@ -48,10 +48,10 @@ body{
   border-top: solid 0 red;
 }
 
-section{
+section:nth-child(2){
   overflow: scroll;
   text-align: center;
-  margin: 0 10px ;
+  margin: 10px ;
   padding: 10px;
   height: 500px;
   flex: 0 1 500px;
@@ -67,4 +67,37 @@ li{
   width: 100%;
   color: azure;
   font-size: 2em;
+}
+
+
+
+
+
+
+
+
+
+.colorChert{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  width: 1000px;
+  background-color: #999;
+  height: 50px;
+  padding: 10px;
+}
+.colorChert ul{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.colorChert li{
+  list-style: none;
+  height: 100%;
+  flex:1 1 100%;
+  margin: 0;
+  padding: 0;
 }

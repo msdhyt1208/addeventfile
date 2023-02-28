@@ -228,7 +228,7 @@ const peel = {
        event.preventDefault();
     }
   },
-  click:  function(i,space){
+  click: function(i,space){
     return function(){
       switch(i){
         case 0:space.className= `tr`; break;

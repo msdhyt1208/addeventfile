@@ -1,7 +1,7 @@
 function turncard(){
   const back = document.querySelector(".back");
   const corner = document.querySelector(".corner");
-  const ol = document.querySelector("ol");
+  const ol = document.querySelector(".record>ol");
   let target = null;
   color ={};
   records = [];
@@ -13,7 +13,6 @@ function turncard(){
     click:function(){
       return function(){
         const text = document.querySelector(".text");
-        if(text != null ) text.remove();
       
         color={
           nambar:{
@@ -58,21 +57,25 @@ function turncard(){
       const backSt = back.style;
       const sqareSt = back.firstElementChild.style;
       const cornerSt = corner.style;
+      const text = document.querySelector(".back .text");
   
       cornerSt.borderTop  = `solid ${color.text} ${width}px`;
       cornerSt.borderLeft = `solid ${color.text2} ${width}px`;
       if(width == 0 && !half){
         backSt.backgroundColor = color.text;
-        sqareSt.display = `block`;
         sqareSt.top = `0px`;
         sqareSt.right = `0px`;
       } 
       else if(width >= back.scrollWidth && !half){
         half = true;
         sqareSt.backgroundColor = color.text2;
+        text.textContent = "";
       }
       else if(width <= 0 && half){
-        sqareSt.display = `none`;
+        sqareSt.top = `0px`;
+        sqareSt.right = `0px`;
+        sqareSt.backgroundColor = color.text;
+        text.textContent = color.text;
         clearInterval(timer);
         return;
       }
@@ -88,8 +91,85 @@ function turncard(){
   
     }
   }
-  back.addEventListener("click",    motion.click())
-  back.addEventListener("drop",     motion.drop());
-  back.addEventListener("dragover", motion.dragover());
+  back.firstElementChild.addEventListener("click",    motion.click())
+  back.firstElementChild.addEventListener("drop",     motion.drop());
+  back.firstElementChild.addEventListener("dragover", motion.dragover());
 }
 turncard();
+
+
+
+
+
+
+
+
+let history =[];
+let i=0;
+const colordiv = document.querySelector(".sqare .text");
+const sqareColor = document.querySelector(".sqare");
+const colorChert = document.querySelector(".colorChert>ul");
+while(i<3){
+  for(let j=0;j<255;j++){
+    crColorLi = document.createElement("li");
+    switch(i){
+      case 0:
+        red = 255-j;
+        green = j;
+        blue = 0;
+          break;
+      case 1:
+        green = 255-j;
+        blue = j;
+        red = 0;
+          break;
+      default:
+        blue = 255-j;
+        red = j;
+        green = 0;
+        break;
+
+    }
+    crColorLi.style.backgroundColor = ` rgb(${red}, ${green}, ${blue})`;
+    const name = [red,green,blue];
+    history.push([...name]);
+    crColorLi.class = history.length;
+    crColorLi.draggable =true;
+    colorChert.appendChild(crColorLi);
+    
+  }
+  i++;
+}
+colorChert.addEventListener("click",function(event){
+  const colorSelect = document.elementFromPoint(event.clientX,event.clientY)
+  colors = history [colorSelect.class];
+  sqareColor.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+  console.dir(history [colorSelect.class])
+  colordiv.textContent = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+})
+
+
+colorChert.addEventListener("touchmove",function(event){
+  event.preventDefault();
+  colorsSelect = document.elementFromPoint(event.touches[0].clientX,event.touches[0].clientY)
+  console.dir(event.touches[0])
+  colors = history [colorsSelect.class];
+  sqareColor.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+  console.dir(history [colorsSelect.class])
+  colordiv.textContent = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+})
+colorChert.addEventListener("dragstart",function(event){
+  startpozison = [event.clientX,event.clientY];
+  colorSelect = document.elementFromPoint(event.clientX,event.clientY);
+})
+
+colorChert.addEventListener("dragover",function(event){
+  console.dir(this)
+  event.preventDefault();
+  colorSelect = document.elementFromPoint(event.clientX,event.clientY);
+  console.dir(event)
+  colors = history [colorSelect.class];
+  sqareColor.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+  console.dir(history [colorSelect.class])
+  colordiv.textContent = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+})
